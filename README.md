@@ -5,6 +5,12 @@
     </picture>
 </p>
 
+<p align="center">
+    <a href="https://github.com/kyhyco/gh-fh/releases/latest">
+        <img alt="Latest release" src="https://img.shields.io/github/v/release/kyhyco/gh-fh?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41&include_prerelease&sort=semver" />
+    </a>
+</p>
+
 # Fuzzyhub = **fzf** + **GitHub CLI**
 
 `Fuzzyhub` is a collection of tools to super charge your git workflow.
