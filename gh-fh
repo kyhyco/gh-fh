@@ -1,35 +1,63 @@
 #!/usr/bin/env bash
 set -e
 
-echo "Hello gh-fh!"
+COMMANDS_DIR=$(dirname "$(readlink -f "$0")")
 
-# Snippets to help get started:
+source "$COMMANDS_DIR/commands/checkout.sh"
+source "$COMMANDS_DIR/commands/delete.sh"
+source "$COMMANDS_DIR/commands/pr.sh"
+source "$COMMANDS_DIR/commands/sync.sh"
+source "$COMMANDS_DIR/commands/view.sh"
+source "$COMMANDS_DIR/commands/prune.sh"
 
-# Determine if an executable is in the PATH
-# if ! type -p ruby >/dev/null; then
-#   echo "Ruby not found on the system" >&2
-#   exit 1
-# fi
+if [[ -z $1 ]]; then
+  echo "Usage: fh <option>"
+  echo ""
+  echo "Options:"
+  echo "  checkout     - Checkout branch"
+  echo "  view         - View folder/files in the browser"
+  echo ""
+  echo "  pr checkout  - Checkout PR branch"
+  echo "  pr view      - View PR in the browser"
+  echo ""
+  echo "  prune        - Prune merged branches"
+  echo "  delete       - Delete branches"
+  echo ""
+  echo "  sync         - Sync main/master branch"
+  exit 1
+fi
 
-# Pass arguments through to another command
-# gh issue list "$@" -R cli/cli
+if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+  echo "fatal: not a git repository (or any of the parent directories): .git"
+  exit 1
+fi
 
-# Using the gh api command to retrieve and format information
-# QUERY='
-#   query($endCursor: String) {
-#     viewer {
-#       repositories(first: 100, after: $endCursor) {
-#         nodes {
-#           nameWithOwner
-#           stargazerCount
-#         }
-#       }
-#     }
-#   }
-# '
-# TEMPLATE='
-#   {{- range $repo := .data.viewer.repositories.nodes -}}
-#     {{- printf "name: %s - stargazers: %v\n" $repo.nameWithOwner $repo.stargazerCount -}}
-#   {{- end -}}
-# '
-# exec gh api graphql -f query="${QUERY}" --paginate --template="${TEMPLATE}"
+if [[ ! -z $1 ]]; then
+  option=$1
+  shift
+  rest=("$@")
+fi
+
+if [[ $option == "checkout" ]]; then
+  __fh-checkout "${rest[@]}"
+fi
+
+if [[ $option == "view" ]]; then
+  __fh-view "${rest[@]}"
+fi
+
+if [[ $option == "pr" ]]; then
+  __fh-pr "${rest[@]}"
+fi
+
+if [[ $option == "sync" ]]; then
+  __fh-sync
+fi
+
+if [[ $option == "delete" ]]; then
+  __fh-delete
+fi
+
+if [[ $option == "prune" ]]; then
+  __fh-prune
+fi
