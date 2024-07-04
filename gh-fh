@@ -11,20 +11,24 @@ source "$COMMANDS_DIR/commands/view.sh"
 source "$COMMANDS_DIR/commands/prune.sh"
 
 if [[ -z $1 ]]; then
-  echo "Usage: fh <option>"
-  echo ""
-  echo "Options:"
-  echo "  checkout     - Checkout branch"
-  echo "  view         - View folder/files in the browser"
-  echo ""
-  echo "  pr checkout  - Checkout PR branch"
-  echo "  pr view      - View PR in the browser"
-  echo ""
-  echo "  prune        - Prune merged branches"
-  echo "  delete       - Delete branches"
-  echo ""
-  echo "  sync         - Sync main/master branch"
-  exit 1
+  cat << EOF
+FuzzyHub = FZF + GitHub CLI
+
+Usage: fh <option>
+
+Options:
+  checkout     - Checkout branch
+  view         - View folder/files in the browser
+
+  pr checkout  - Checkout PR branch
+  pr view      - View PR in the browser
+
+  prune        - Prune merged branches
+  delete       - Delete branches
+
+  sync         - Sync main/master branch
+EOF
+  exit 0
 fi
 
 if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
