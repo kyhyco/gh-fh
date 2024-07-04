@@ -10,12 +10,14 @@
 `Fuzzyhub` is a collection of tools to super charge your git workflow.
 
 ## Installation
+
 ```bash
 brew install gh fzf
 gh extension install kyhyco/gh-fh
 ```
 
 ## Available commands
+
 ```bash
 Usage: fh <option>
 
@@ -42,12 +44,4 @@ alias fv="gh fh view"
 
 alias pco="gh fh pr checkout"
 alias pv="gh fh pr view"
-```
-
-## Bonus aliases
-
-```bash
-alias gl='git log --color --graph --pretty=format:"%Cred%h%Creset %C(blue)<%an>%Creset %s -%C(bold yellow)%d%Creset %Cgreen(%cr)" --abbrev-commit'
-alias gll='git log --stat'
-alias glll='git log --stat -p'
 ```
