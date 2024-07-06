@@ -7,7 +7,7 @@
 
 <p align="center">
     <a href="https://github.com/kyhyco/gh-fh/releases/latest">
-        <img alt="Latest release" src="https://img.shields.io/github/v/release/kyhyco/gh-fh?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41&include_prerelease&sort=semver" />
+        <img alt="Latest release" src="https://img.shields.io/github/v/release/kyhyco/gh-fh?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41&include_prerelease&sort=semver&_cache_bust=" />
     </a>
 </p>
 
