@@ -14,6 +14,7 @@ source "$FUZZYHUB_DIR/commands/view.sh"
 __fh-print-commands() {
   cat << EOF
 FuzzyHub = FZF + GitHub CLI
+$(cat $FUZZYHUB_DIR/VERSION; echo )
 
 Usage: fh <option>
 
