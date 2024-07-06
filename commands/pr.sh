@@ -1,50 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
-__fh-get_remote_url() {
-  local url=$(git config --get remote.upstream.url)
-
-  if [[ -z "$url" ]]; then
-    url=$(git config --get remote.origin.url)
-  fi
-
-  if [[ "$url" == "git@"* ]]; then
-    echo "$url" | sed -E 's|^git@([^:]+):([^/]+)/([^\.]+)(\.git)?$|https://\1/\2/\3|'
-  else
-    echo "${url%.git}"
-  fi
-}
-
-_beginsWith() {
-  [[ $2 == $1* ]]
-}
-
-_repository_owner() {
-  local repoUrl=$(__fh-get_remote_url)
-
-  if _beginsWith "https://" "$repoUrl"; then
-    echo "$repoUrl" | cut -d '/' -f 4
-  elif _beginsWith "git@" "$repoUrl"; then
-    echo "$repoUrl" | cut -d ':' -f 2 | xargs dirname
-  fi
-}
-
-__fh-get_remote_url() {
-  local url=$(git config --get remote.upstream.url)
-
-  if [[ -z "$url" ]]; then
-    url=$(git config --get remote.origin.url)
-  fi
-
-  if [[ "$url" == "git@"* ]]; then
-    echo "$url" | sed -E 's|^git@([^:]+):([^/]+)/([^\.]+)(\.git)?$|https://\1/\2/\3|'
-  else
-    echo "${url%.git}"
-  fi
-}
+source "$FUZZYHUB_DIR/commands/utils/remote-url.sh"
+source "$FUZZYHUB_DIR/commands/utils/owner.sh"
 
 _extract_domain() {
-  local repoUrl=$(__fh-get_remote_url)
+  local repoUrl=$(__fh-remote-url)
 
   if [[ "$repoUrl" == https://* ]]; then
     echo "$repoUrl" | cut -d '/' -f 3
@@ -55,7 +16,7 @@ _extract_domain() {
 
 __fh-list-pr() {
   name=$(basename $(git remote get-url origin) .git)
-  owner=$(_repository_owner)
+  owner=$(__fh-owner)
   git_url=$(git remote get-url origin)
   domain="$(_extract_domain)"
 
@@ -106,9 +67,9 @@ __fh-pr() {
     exit 1
   fi
 
-  local url=$(__fh-get_remote_url)
+  local url=$(__fh-remote-url)
 
-  local selected=$(__fh-list-pr | fzf -m --ansi)
+  local selected=$(__fh-list-pr | fzf --ansi)
 
   if [[ -z $selected ]]; then
     echo "No PR selected"

@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 set -e
 
-COMMANDS_DIR=$(dirname "$(readlink -f "$0")")
+FUZZYHUB_DIR=$(dirname "$(readlink -f "$0")")
 
-source "$COMMANDS_DIR/commands/checkout.sh"
-source "$COMMANDS_DIR/commands/delete.sh"
-source "$COMMANDS_DIR/commands/pr.sh"
-source "$COMMANDS_DIR/commands/sync.sh"
-source "$COMMANDS_DIR/commands/view.sh"
-source "$COMMANDS_DIR/commands/prune.sh"
+source "$FUZZYHUB_DIR/commands/checkout.sh"
+source "$FUZZYHUB_DIR/commands/delete.sh"
+source "$FUZZYHUB_DIR/commands/pr.sh"
+source "$FUZZYHUB_DIR/commands/prune.sh"
+source "$FUZZYHUB_DIR/commands/remote.sh"
+source "$FUZZYHUB_DIR/commands/sync.sh"
+source "$FUZZYHUB_DIR/commands/view.sh"
 
 if [[ -z $1 ]]; then
   cat << EOF
@@ -64,4 +65,9 @@ fi
 
 if [[ $option == "prune" ]]; then
   __fh-prune
+fi
+
+if [[ $option == "remote" ]]; then
+  __fh-remote "${rest[@]}"
+
 fi
