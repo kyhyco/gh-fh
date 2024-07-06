@@ -1,33 +1,40 @@
 #!/usr/bin/env bash
 set -e
 
-COMMANDS_DIR=$(dirname "$(readlink -f "$0")")
+FUZZYHUB_DIR=$(dirname "$(readlink -f "$0")")
 
-source "$COMMANDS_DIR/commands/checkout.sh"
-source "$COMMANDS_DIR/commands/delete.sh"
-source "$COMMANDS_DIR/commands/pr.sh"
-source "$COMMANDS_DIR/commands/sync.sh"
-source "$COMMANDS_DIR/commands/view.sh"
-source "$COMMANDS_DIR/commands/prune.sh"
+source "$FUZZYHUB_DIR/commands/checkout.sh"
+source "$FUZZYHUB_DIR/commands/delete.sh"
+source "$FUZZYHUB_DIR/commands/pr.sh"
+source "$FUZZYHUB_DIR/commands/prune.sh"
+source "$FUZZYHUB_DIR/commands/remote.sh"
+source "$FUZZYHUB_DIR/commands/sync.sh"
+source "$FUZZYHUB_DIR/commands/view.sh"
 
-if [[ -z $1 ]]; then
+__fh-print-commands() {
   cat << EOF
 FuzzyHub = FZF + GitHub CLI
 
 Usage: fh <option>
 
 Options:
-  checkout     - Checkout branch
-  view         - View folder/files in the browser
+  checkout       - Checkout branch
+  view           - View folder/files in the browser
 
-  pr checkout  - Checkout PR branch
-  pr view      - View PR in the browser
+  pr checkout    - Checkout PR branch
+  pr view        - View PR in the browser
 
-  prune        - Prune merged branches
-  delete       - Delete branches
+  prune          - Prune merged branches
+  delete         - Delete branches
+  sync           - Sync main/master branch
 
-  sync         - Sync main/master branch
+  remote add     - Add forked repositories to remote
+  remote delete  - Delete remote
 EOF
+}
+
+if [[ -z $1 ]]; then
+  __fh-print-commands
   exit 0
 fi
 
@@ -44,24 +51,26 @@ fi
 
 if [[ $option == "checkout" ]]; then
   __fh-checkout "${rest[@]}"
-fi
 
-if [[ $option == "view" ]]; then
+elif [[ $option == "view" ]]; then
   __fh-view "${rest[@]}"
-fi
 
-if [[ $option == "pr" ]]; then
+elif [[ $option == "pr" ]]; then
   __fh-pr "${rest[@]}"
-fi
 
-if [[ $option == "sync" ]]; then
+elif [[ $option == "sync" ]]; then
   __fh-sync
-fi
 
-if [[ $option == "delete" ]]; then
+elif [[ $option == "delete" ]]; then
   __fh-delete
-fi
 
-if [[ $option == "prune" ]]; then
+elif [[ $option == "prune" ]]; then
   __fh-prune
+
+elif [[ $option == "remote" ]]; then
+  __fh-remote "${rest[@]}"
+
+else
+  __fh-print-commands
+  exit 1
 fi
