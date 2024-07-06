@@ -28,16 +28,18 @@ gh extension install kyhyco/gh-fh
 Usage: fh <option>
 
 Options:
-  checkout     - Checkout branch
-  view         - View folder/files in the browser
+  checkout       - Checkout branch
+  view           - View folder/files in the browser
 
-  pr checkout  - Checkout PR branch
-  pr view      - View PR in the browser
+  pr checkout    - Checkout PR branch
+  pr view        - View PR in the browser
 
-  prune        - Prune merged branches
-  delete       - Delete branches
+  prune          - Prune merged branches
+  delete         - Delete branches
+  sync           - Sync main/master branch
 
-  sync         - Sync main/master branch
+  remote add     - Add forked repositories to remote
+  remote delete  - Delete remote
 ```
 
 ## Recommended shell aliases:
