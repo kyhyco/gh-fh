@@ -1,0 +1,17 @@
+# Changelog
+
+# 1.1.0
+- Add `fh remote` command:
+  - `fh remote add` - add forked repositories to remote
+  - `fh remote delete` - delete remote
+
+# 1.0.0
+
+## Features
+- Checkout branch with fzf
+- View folder/files in the browser
+- Checkout PR branch with fzf
+- View PR in the browser
+- Prune merged branches
+- Delete branches with fzf
+- Sync main/master branch
