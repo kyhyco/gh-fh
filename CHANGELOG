@@ -1,7 +1,12 @@
 # Changelog
 
+# 1.1.1
+- feat: `fh checkout` remote branches
+ - format: `remote/${remote-name}/${branch-name}`
+- chore: clean up `fh delete`
+
 # 1.1.0
-- Add `fh remote` command:
+- feat: Add `fh remote` command:
   - `fh remote add` - add forked repositories to remote
   - `fh remote delete` - delete remote
 
