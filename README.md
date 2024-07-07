@@ -35,6 +35,7 @@ Options:
   pr view        - View PR in the browser
 
   prune          - Prune merged branches
+  push           - Push to origin by default
   delete         - Delete branches
   sync           - Sync main/master branch
 

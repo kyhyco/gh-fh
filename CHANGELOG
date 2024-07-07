@@ -4,7 +4,7 @@
 - feat: `fh push` push current branch to origin by default
   - To force push, `fh push -f`
   - To push to another remote, add remote name: `fh push <remote-name>`
-  - fh push <remote-name> -f also works
+  - `fh push <remote-name> -f` also works
 
 # 1.1.2
 - fix: `fh checkout` on origin remote branches keeps the branch name
