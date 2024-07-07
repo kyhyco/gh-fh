@@ -1,5 +1,8 @@
 # Changelog
 
+# 1.1.2
+- fix: `fh checkout` on origin remote branches keeps the branch name
+
 # 1.1.1
 - feat: `fh checkout` remote branches
  - format: `remote/${remote-name}/${branch-name}`

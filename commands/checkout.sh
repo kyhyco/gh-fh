@@ -6,6 +6,12 @@ __fh-remove-first-slash() {
   echo "${input#*/}"
 }
 
+__fh-first-group() {
+  local input_string="$1"
+  local first_group="${input_string%%/*}"
+  echo "$first_group"
+}
+
 __fh-checkout() {
   branch=$1
 
@@ -46,14 +52,22 @@ __fh-checkout() {
   local full_path=$(awk '{print $2}' <<<"$selection")
 
   if [[ "$type" == "remote" ]]; then
+    local remote=$(__fh-first-group $full_path)
+    local branch_name=""
+
+    if [[ "$remote" == "origin" ]]; then
+      branch_name=$(__fh-remove-first-slash $full_path)
+    else
+      branch_name="remote/$full_path"
+    fi
 
     # create new branch if it doesn't exist
-    if ! git show-ref --quiet "refs/heads/remote/$full_path"; then
-      git checkout -b remote/$full_path "refs/remotes/$full_path"
+    if ! git show-ref --quiet "refs/heads/$branch_name"; then
+      git checkout -b $branch_name "refs/remotes/$full_path"
       exit 0
     fi
 
-    git checkout remote/$full_path
+    git checkout $branch_name
     exit 0
   fi
 
