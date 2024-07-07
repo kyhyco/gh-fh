@@ -7,6 +7,7 @@ source "$FUZZYHUB_DIR/commands/checkout.sh"
 source "$FUZZYHUB_DIR/commands/delete.sh"
 source "$FUZZYHUB_DIR/commands/pr.sh"
 source "$FUZZYHUB_DIR/commands/prune.sh"
+source "$FUZZYHUB_DIR/commands/push.sh"
 source "$FUZZYHUB_DIR/commands/remote.sh"
 source "$FUZZYHUB_DIR/commands/sync.sh"
 source "$FUZZYHUB_DIR/commands/view.sh"
@@ -26,6 +27,7 @@ Options:
   pr view        - View PR in the browser
 
   prune          - Prune merged branches
+  push           - Push to origin by default
   delete         - Delete branches
   sync           - Sync main/master branch
 
@@ -67,6 +69,9 @@ elif [[ $option == "delete" ]]; then
 
 elif [[ $option == "prune" ]]; then
   __fh-prune
+
+elif [[ $option == "push" ]]; then
+  __fh-push "${rest[@]}"
 
 elif [[ $option == "remote" ]]; then
   __fh-remote "${rest[@]}"
