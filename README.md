@@ -22,6 +22,11 @@ brew install gh fzf
 gh extension install kyhyco/gh-fh
 ```
 
+### Set shell alias
+```bash
+alias fh="gh fh"
+```
+
 ## Available commands
 
 ```bash
