@@ -39,7 +39,7 @@ __fh-checkout() {
   # get tag names and add purple prefix "remote" to branch names
   local tags=$(git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}') || return
 
-  local choices=$(echo "$local_branches"; echo "$remote_branches"; echo "$tags"; echo "");
+  local choices=$(echo "$local_branches"; echo "$remote_branches"; echo "$tags";);
 
   local upstream=$(git remote | grep -q upstream && echo upstream || echo origin)
   local main=$(git branch -l main master --format '%(refname:short)')
@@ -50,8 +50,8 @@ __fh-checkout() {
   local preview="git --no-pager log --color --graph --pretty=format:'%Cred%h%Creset %C(blue)<%an>%Creset %s -%C(bold yellow)%d%Creset %Cgreen(%cr)' --abbrev-commit $base_branch..{2} | bat --color always --plain"
 
   local selection=$(
-    echo "$choices" |
-    fzf --no-sort --no-hscroll --no-multi -n 2 \
+    echo "$choices" | grep -v '^$' |
+    fzf --no-sort --no-hscroll --no-multi \
         --preview="$preview" \
         --preview-window 'right,border-left,<30(hidden)' \
         --ansi) || return
