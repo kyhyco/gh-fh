@@ -48,6 +48,8 @@ Options:
 
   remote add     - Add forked repositories to remote
   remote delete  - Delete remote
+
+  version        - Print version
 ```
 
 ## Recommended shell aliases:
