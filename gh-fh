@@ -12,10 +12,12 @@ source "$FUZZYHUB_DIR/commands/remote.sh"
 source "$FUZZYHUB_DIR/commands/sync.sh"
 source "$FUZZYHUB_DIR/commands/view.sh"
 
+VERSION=$(cat $FUZZYHUB_DIR/VERSION; echo )
+
 __fh-print-commands() {
   cat << EOF
 FuzzyHub = FZF + GitHub CLI
-$(cat $FUZZYHUB_DIR/VERSION; echo )
+$(VERSION)
 
 Usage: fh <option>
 
@@ -33,6 +35,8 @@ Options:
 
   remote add     - Add forked repositories to remote
   remote delete  - Delete remote
+
+  version        - Print version
 EOF
 }
 
@@ -75,6 +79,9 @@ elif [[ $option == "push" ]]; then
 
 elif [[ $option == "remote" ]]; then
   __fh-remote "${rest[@]}"
+
+elif [[ $option == "version" ]]; then
+  echo "$VERSION"
 
 else
   __fh-print-commands
