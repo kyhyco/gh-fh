@@ -51,7 +51,7 @@ __fh-checkout() {
 
   local selection=$(
     echo "$choices" | grep -v '^$' |
-    fzf --no-sort --no-hscroll --no-multi -n 2 \
+    fzf --no-sort --no-hscroll --no-multi \
         --preview="$preview" \
         --preview-window 'right,border-left,<30(hidden)' \
         --ansi) || return
