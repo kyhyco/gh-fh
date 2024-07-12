@@ -52,7 +52,7 @@ __fh-format-remote-url() {
 __fh-remote-add() {
   local owner=$(__fh-owner)
 
-  local selection=$(__fh-list-forks | fzf -m --ansi)
+  local selection=$(__fh-list-forks | fzf -m --ansi --header="Press tab to multi select")
 
   if [[ -z ${selection} ]]; then
     echo "No remote selected"
@@ -80,7 +80,7 @@ __fh-remote-delete() {
   }
   {
       printf name "%-18s" reset " " url "%s" reset "\n", $1, $2
-  }' | uniq | fzf -m --ansi)
+  }' | uniq | fzf -m --ansi --header="Press tab to multi select")
 
   if [[ -z ${selection} ]]; then
     echo "No remote selected"
