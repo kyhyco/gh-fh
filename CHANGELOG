@@ -1,5 +1,8 @@
 # Changelog
 
+# 1.2.3
+- feat: add `fh update` command to update fuzzyhub
+
 # 1.2.2
 - fix: print version correctly
 
