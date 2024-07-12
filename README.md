@@ -11,14 +11,16 @@
     </a>
 </p>
 
-# Fuzzyhub = **fzf** + **GitHub CLI**
+# Fuzzyhub
 
 `Fuzzyhub` is a collection of tools to super charge your git workflow.
+
+Built with [fzf](https://github.com/junegunn/fzf) and [GitHub Graphql API](https://docs.github.com/en/graphql/guides).
 
 ## Installation
 
 ```bash
-brew install gh fzf
+brew install gh fzf bat
 gh extension install kyhyco/gh-fh
 ```
 
@@ -46,6 +48,8 @@ Options:
 
   remote add     - Add forked repositories to remote
   remote delete  - Delete remote
+
+  version        - Print version
 ```
 
 ## Recommended shell aliases:

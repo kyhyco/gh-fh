@@ -1,5 +1,11 @@
 # Changelog
 
+# 1.2.1
+- feat: `fh checkout` and `fh delete` now shows preview of unique commits against `main` or `origin/main`
+- feat: Better logs for `fh checkout` and `fh delete`
+- feat: add `fh version` command to print version
+- feat: `fh checkout` on a tag is handled more gracefully
+
 # 1.2.0
 - feat: `fh push` push current branch to origin by default
   - To force push, `fh push -f`
