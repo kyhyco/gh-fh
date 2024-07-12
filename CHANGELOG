@@ -1,5 +1,8 @@
 # Changelog
 
+# 1.2.2
+- fix: print version correctly
+
 # 1.2.1
 - feat: `fh checkout` and `fh delete` now shows preview of unique commits against `main` or `origin/main`
 - feat: Better logs for `fh checkout` and `fh delete`
