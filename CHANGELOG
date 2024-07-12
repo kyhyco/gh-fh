@@ -1,5 +1,9 @@
 # Changelog
 
+# 1.2.4
+- fix: `fh checkout` remove empty lines
+- fix: `fh checkout` enable search on type
+
 # 1.2.3
 - feat: add `fh update` command to update fuzzyhub
 
