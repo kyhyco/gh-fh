@@ -17,7 +17,7 @@ VERSION=$(cat $FUZZYHUB_DIR/VERSION; echo )
 __fh-print-commands() {
   cat << EOF
 FuzzyHub = FZF + GitHub CLI
-$(VERSION)
+$VERSION
 
 Usage: fh <option>
 
