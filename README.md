@@ -53,7 +53,7 @@ Options:
   version        - Print version
 ```
 
-## Recommended shell aliases:
+## Shell alias examples:
 
 ```bash
 alias fh="gh fh"
@@ -63,4 +63,6 @@ alias fv="gh fh view"
 
 alias pco="gh fh pr checkout"
 alias pv="gh fh pr view"
+
+alias gm="git checkout main && fh sync && fh prune"
 ```
