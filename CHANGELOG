@@ -1,5 +1,9 @@
 # Changelog
 
+# 1.2.5
+- feat: add header to `fh delete` and `fh remote` for multi select
+- fix: `fh delete` remove empty lines
+
 # 1.2.4
 - fix: `fh checkout` remove empty lines
 - fix: `fh checkout` enable search on type
