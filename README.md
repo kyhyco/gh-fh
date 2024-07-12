@@ -20,7 +20,7 @@ Built with [fzf](https://github.com/junegunn/fzf) and [GitHub Graphql API](https
 ## Installation
 
 ```bash
-brew install gh fzf
+brew install gh fzf bat
 gh extension install kyhyco/gh-fh
 ```
 
