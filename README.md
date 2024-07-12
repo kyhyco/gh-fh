@@ -49,6 +49,7 @@ Options:
   remote add     - Add forked repositories to remote
   remote delete  - Delete remote
 
+  update         - Update Fuzzyhub
   version        - Print version
 ```
 

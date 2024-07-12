@@ -16,8 +16,7 @@ VERSION=$(cat $FUZZYHUB_DIR/VERSION; echo )
 
 __fh-print-commands() {
   cat << EOF
-FuzzyHub = FZF + GitHub CLI
-$VERSION
+Fuzzyhub v$VERSION
 
 Usage: fh <option>
 
@@ -36,6 +35,7 @@ Options:
   remote add     - Add forked repositories to remote
   remote delete  - Delete remote
 
+  update         - Update Fuzzyhub
   version        - Print version
 EOF
 }
@@ -81,7 +81,10 @@ elif [[ $option == "remote" ]]; then
   __fh-remote "${rest[@]}"
 
 elif [[ $option == "version" ]]; then
-  echo "$VERSION"
+  echo "v$VERSION"
+
+elif [[ $option == "upgrade" ]]; then
+  gh extension upgrade fh
 
 else
   __fh-print-commands
