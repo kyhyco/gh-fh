@@ -19,10 +19,11 @@ __fh-delete() {
 
   # get remote branch names and add blue prefix "remote" to branch names
   local selection=$(
-    (echo "$local_branches") |
+    (echo "$local_branches") | grep -v '^$' |
     fzf --no-sort --no-hscroll -m -n 2 \
         --preview="$preview" \
         --preview-window 'right,border-left,<30(hidden)' \
+        --header="Press tab to multi select" \
         --ansi) || return
 
   if [[ -z "$selection" ]]; then
