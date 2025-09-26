@@ -11,6 +11,7 @@ source "$FUZZYHUB_DIR/commands/push.sh"
 source "$FUZZYHUB_DIR/commands/remote.sh"
 source "$FUZZYHUB_DIR/commands/sync.sh"
 source "$FUZZYHUB_DIR/commands/view.sh"
+source "$FUZZYHUB_DIR/commands/worktree.sh"
 
 VERSION=$(cat $FUZZYHUB_DIR/VERSION; echo )
 
@@ -79,6 +80,9 @@ elif [[ $option == "push" ]]; then
 
 elif [[ $option == "remote" ]]; then
   __fh-remote "${rest[@]}"
+
+elif [[ $option == "worktree" ]]; then
+  __fh-worktree "${rest[@]}"
 
 elif [[ $option == "version" ]]; then
   echo "v$VERSION"
